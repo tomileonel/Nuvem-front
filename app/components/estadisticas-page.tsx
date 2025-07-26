@@ -5,21 +5,21 @@ export default function EstadisticasPage() {
   const stats = [
     {
       title: "Tiempo de llamada promedio",
-      value: "4:32 min",
+      value: "1:32 min",
       icon: Phone,
       color: "text-blue-600",
       bgColor: "bg-blue-50",
     },
     {
       title: "Completación de llamada",
-      value: "87.5%",
+      value: "50%",
       icon: CheckCircle,
       color: "text-green-600",
       bgColor: "bg-green-50",
     },
     {
       title: "Ventas",
-      value: "142",
+      value: "3",
       icon: TrendingUp,
       color: "text-purple-600",
       bgColor: "bg-purple-50",
@@ -53,21 +53,25 @@ export default function EstadisticasPage() {
 
       <Card className="border-0 shadow-md mt-6">
         <CardHeader>
-          <CardTitle className="text-lg">Resumen del día</CardTitle>
+          <CardTitle className="text-lg">Resumen</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-gray-600">Llamadas realizadas</span>
-              <span className="font-semibold">163</span>
+              <span className="font-semibold">6</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Llamadas exitosas</span>
-              <span className="font-semibold">142</span>
+              <span className="font-semibold">3</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Tasa de conversión</span>
-              <span className="font-semibold text-green-600">87.1%</span>
+              <span className="font-semibold text-green-600">50%</span>
+            </div>
+                        <div className="flex justify-between">
+              <span className="text-gray-600">Llamadas en curso</span>
+              <span className="font-semibold text-blue-600">1</span>
             </div>
           </div>
         </CardContent>

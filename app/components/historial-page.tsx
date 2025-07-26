@@ -1,15 +1,17 @@
 "use client"
 
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Clock, Phone, MessageCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Clock, Phone, MessageCircle, Filter } from "lucide-react"
 
 interface HistorialPageProps {
   onSelectItem: (item: any) => void
 }
 
 export default function HistorialPage({ onSelectItem }: HistorialPageProps) {
-  // Remove the selectedItem state and Dialog imports
-  // Update the historial data to include more detailed transcription info
+  const [activeFilter, setActiveFilter] = useState("Todos")
 
   const historial = [
     {
@@ -18,7 +20,7 @@ export default function HistorialPage({ onSelectItem }: HistorialPageProps) {
       cliente: "María González",
       fecha: "2024-01-26 14:30",
       duracion: "4:32",
-      resultado: "Venta exitosa",
+      resultado: "Ganada",
       descripcion:
         "Cliente interesado en el plan premium. Se realizó la venta después de explicar los beneficios del servicio.",
       icon: Phone,
@@ -64,7 +66,7 @@ export default function HistorialPage({ onSelectItem }: HistorialPageProps) {
       cliente: "Carlos Rodríguez",
       fecha: "2024-01-26 13:15",
       duracion: "2:45",
-      resultado: "Reagendar",
+      resultado: "Calificada",
       descripcion:
         "Cliente necesita más tiempo para decidir. Se acordó llamar nuevamente la próxima semana. Mostró interés en el plan básico.",
       icon: MessageCircle,
@@ -80,7 +82,7 @@ export default function HistorialPage({ onSelectItem }: HistorialPageProps) {
 
 [13:15:30] Cliente: Principalmente, me preocupa la migración de nuestros datos actuales a la nube y cómo afectará la operatividad diaria de la empresa.
 
-[13:15:40] Agente: Es una excelente pregunta. Contamos con un equipo especializado en migración que se encargará de transferir tus datos de forma segura y eficiente, minimizando cualquier interrupción. Además, ofrecemos capacitación para tu personal para asegurar una transición sin problemas.
+[13:15:40] Agente: Es una excelente pregunta. Contamos with un equipo especializado en migración que se encargará de transferir tus datos de forma segura y eficiente, minimizando cualquier interrupción. Además, ofrecemos capacitación para tu personal para asegurar una transición sin problemas.
 
 [13:15:55] Cliente: Suena bien, pero ¿cuál sería el costo total de la migración y la capacitación?
 
@@ -107,7 +109,7 @@ export default function HistorialPage({ onSelectItem }: HistorialPageProps) {
       cliente: "Ana Martínez",
       fecha: "2024-01-26 11:20",
       duracion: "6:15",
-      resultado: "Venta exitosa",
+      resultado: "Ganada",
       descripcion:
         "Empresa interesada en el plan empresarial. Se discutieron las características específicas para su negocio. Venta confirmada.",
       icon: Phone,
@@ -152,7 +154,7 @@ export default function HistorialPage({ onSelectItem }: HistorialPageProps) {
       cliente: "Luis Fernández",
       fecha: "2024-01-25 16:45",
       duracion: "3:20",
-      resultado: "No interesado",
+      resultado: "Perdida",
       descripcion: "Cliente no está interesado en el momento. Se mantendrá en la base de datos para futuras campañas.",
       icon: Phone,
       transcripcion: `[16:45:10] Agente: Buenas tardes, ¿hablo con Luis Fernández? Mi nombre es Carolina de Nuvem.
@@ -190,7 +192,7 @@ export default function HistorialPage({ onSelectItem }: HistorialPageProps) {
       cliente: "Sofia López",
       fecha: "2024-01-25 15:30",
       duracion: "1:50",
-      resultado: "Venta exitosa",
+      resultado: "Ganada",
       descripcion:
         "Seguimiento exitoso de llamada anterior. Cliente decidió proceder con el plan básico. Proceso de venta completado.",
       icon: MessageCircle,
@@ -225,14 +227,97 @@ export default function HistorialPage({ onSelectItem }: HistorialPageProps) {
 [15:33:05] Cliente: Igualmente. Adiós.
 `,
     },
+    {
+      id: 6,
+      tipo: "Llamada",
+      cliente: "Roberto Vega",
+      fecha: "2024-01-24 10:15",
+      duracion: "5:20",
+      resultado: "Calificada",
+      descripcion:
+        "Cliente interesado pero necesita aprobación del equipo directivo. Programada reunión para la próxima semana.",
+      icon: Phone,
+      transcripcion: `[10:15:00] Agente: Buenos días, ¿hablo con Roberto Vega? Mi nombre es Patricia de Nuvem.
+
+[10:15:05] Cliente: Sí, buenos días Patricia. ¿En qué puedo ayudarla?
+
+[10:15:10] Agente: Le llamo porque tenemos una propuesta que podría ser muy beneficiosa para su empresa. Nuvem ofrece soluciones de gestión en la nube que pueden optimizar significativamente sus operaciones.
+
+[10:15:25] Cliente: Interesante. Cuénteme más detalles.
+
+[10:15:30] Agente: Nuestro servicio permite centralizar todos sus datos en la nube, con acceso desde cualquier lugar, copias de seguridad automáticas y un nivel de seguridad empresarial. Esto puede reducir sus costos operativos hasta en un 35%.
+
+[10:15:50] Cliente: Suena prometedor. ¿Qué tipo de empresas suelen usar sus servicios?
+
+[10:15:55] Agente: Trabajamos con empresas de todos los tamaños, desde startups hasta corporaciones multinacionales. Nuestros clientes van desde empresas de tecnología hasta firmas de consultoría y comercio electrónico.
+
+[10:16:10] Cliente: Nosotros somos una empresa de consultoría con aproximadamente 50 empleados. ¿Qué plan nos recomendaría?
+
+[10:16:20] Agente: Para una empresa de su tamaño, el Plan Empresarial sería ideal. Incluye almacenamiento ilimitado, herramientas de colaboración avanzadas y soporte prioritario.
+
+[10:16:35] Cliente: ¿Cuál sería la inversión mensual?
+
+[10:16:40] Agente: El Plan Empresarial tiene un costo de $599.99 mensuales, pero considerando los ahorros en infraestructura y el aumento en productividad, la inversión se justifica rápidamente.
+
+[10:17:00] Cliente: Es una decisión importante. Necesitaría discutirlo con mi equipo directivo antes de tomar una decisión.
+
+[10:17:10] Agente: Por supuesto, es completamente comprensible. ¿Le gustaría que preparemos una presentación personalizada para su equipo directivo?
+
+[10:17:20] Cliente: Eso sería excelente. ¿Podrían venir a nuestras oficinas?
+
+[10:17:25] Agente: Absolutamente. ¿Qué día de la próxima semana les vendría mejor?
+
+[10:17:30] Cliente: El miércoles por la tarde estaría perfecto.
+
+[10:17:35] Agente: Excelente. Confirmaré la cita y les enviaré material preparatorio por adelantado.
+
+[10:17:45] Cliente: Perfecto, esperamos su visita.
+
+[10:17:50] Agente: Muchas gracias Roberto. Que tenga un excelente día.
+`,
+    },
   ]
+
+  const filters = ["Todos", "Ganada", "Calificada", "Perdida"]
+
+  const filteredHistorial =
+    activeFilter === "Todos" ? historial : historial.filter((item) => item.resultado === activeFilter)
+
+  const getResultBadgeColor = (resultado: string) => {
+    switch (resultado) {
+      case "Ganada":
+        return "bg-green-100 text-green-800"
+      case "Calificada":
+        return "bg-yellow-100 text-yellow-800"
+      case "Perdida":
+        return "bg-red-100 text-red-800"
+      default:
+        return "bg-gray-100 text-gray-800"
+    }
+  }
 
   return (
     <div className="p-4 h-full overflow-y-auto">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Historial</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">Historial</h2>
+
+      {/* Filter Buttons */}
+      <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+        {filters.map((filter) => (
+          <Button
+            key={filter}
+            variant={activeFilter === filter ? "default" : "outline"}
+            size="sm"
+            onClick={() => setActiveFilter(filter)}
+            className="whitespace-nowrap flex items-center gap-1"
+          >
+            <Filter className="h-3 w-3" />
+            {filter}
+          </Button>
+        ))}
+      </div>
 
       <div className="space-y-4">
-        {historial.map((item) => {
+        {filteredHistorial.map((item) => {
           const IconComponent = item.icon
           return (
             <Card
@@ -256,13 +341,21 @@ export default function HistorialPage({ onSelectItem }: HistorialPageProps) {
                     <span className="text-sm">{item.fecha}</span>
                     <span className="text-sm">• {item.duracion}</span>
                   </div>
-                  <div className="text-sm font-medium text-gray-800">{item.resultado}</div>
+                  <div className="flex items-center justify-between">
+                    <Badge className={getResultBadgeColor(item.resultado)}>{item.resultado}</Badge>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           )
         })}
       </div>
+
+      {filteredHistorial.length === 0 && (
+        <div className="text-center py-8">
+          <p className="text-gray-500">No hay registros para el filtro seleccionado</p>
+        </div>
+      )}
     </div>
   )
 }

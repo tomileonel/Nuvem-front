@@ -79,12 +79,12 @@ export default function NuvemApp() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col max-w-sm mx-auto">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b px-4 py-3">
+      <header className="bg-white shadow-sm border-b px-4 py-3 fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-sm z-10">
         <h1 className="text-xl font-bold text-gray-800 text-center">Nuvem</h1>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-hidden pb-20">{renderPage()}</main>
+      <main className="flex-1 overflow-hidden pb-20 pt-16">{renderPage()}</main>
 
       {/* Bottom Navigation */}
       <nav className="bg-white border-t border-gray-200 px-2 py-2 fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-sm">

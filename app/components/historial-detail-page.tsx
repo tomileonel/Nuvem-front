@@ -54,7 +54,7 @@ export default function HistorialDetailPage({ item, onBack }: HistorialDetailPag
         <Button variant="ghost" size="sm" onClick={onBack}>
           <ArrowLeft className="h-4 w-4" />
         </Button>
-        <h2 className="text-2xl font-bold text-gray-800">Transcripción de Llamada</h2>
+        <h2 className="text-2xl font-bold text-gray-800">Resumen de Llamada</h2>
       </div>
 
       <div className="space-y-4">
