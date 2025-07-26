@@ -17,7 +17,7 @@ export default function LoadingAnimation() {
             animate ? "opacity-100 scale-100" : "opacity-0 scale-75"
           }`}
         >
-          Nuvem
+          NuvemVoice
         </div>
         <div
           className={`w-16 h-1 bg-white rounded-full mx-auto transition-all duration-1500 delay-500 ${
@@ -29,7 +29,7 @@ export default function LoadingAnimation() {
             animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          Cargando...
+          Loading...
         </div>
       </div>
     </div>
